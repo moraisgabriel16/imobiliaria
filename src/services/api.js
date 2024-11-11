@@ -2,7 +2,7 @@
 import axios from 'axios';
 
 const api = axios.create({
-    baseURL: 'http://localhost:5000/api', // URL do backend
+    baseURL: 'https://imobiliaria-backend-six.vercel.app/api', // URL do backend
 });
 
 // Função para listar todos os clientes

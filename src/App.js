@@ -8,7 +8,7 @@ import ClienteForm from './components/ClienteForm';
 
 function App() {
     return (
-        <Router>
+        <Router basename="/imobiliaria">
             <Routes>
                 <Route path="/" element={<Home />} />
                 <Route path="/clientes" element={<ClientesList />} />
