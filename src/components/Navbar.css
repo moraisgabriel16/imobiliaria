@@ -1,0 +1,24 @@
+/* src/components/Navbar.css */
+
+/* Estilos específicos para o Navbar */
+.navbar {
+    padding: 1rem;
+}
+
+.navbar-toggler {
+    border: none;
+}
+
+/* Ajustes para o menu colapsado em dispositivos móveis */
+.navbar-nav {
+    text-align: center;
+}
+
+.nav-link {
+    padding: 0.5rem 1rem;
+}
+
+/* Correção de comportamento do menu quando expandido */
+.collapse.show {
+    display: block !important;
+}
