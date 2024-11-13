@@ -37,7 +37,6 @@ function ClienteForm() {
         let formErrors = {};
         const cpfRegex = /^\d{3}\.\d{3}\.\d{3}-\d{2}$/; // Formato: XXX.XXX.XXX-XX
         const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-        const telefoneRegex = /^\(?\d{2}\)?[\s-]?\d{4,5}-\d{4}$/;
 
         if (!cpfRegex.test(formData.cpf)) {
             formErrors.cpf = 'CPF inválido. Use o formato XXX.XXX.XXX-XX.';
@@ -47,9 +46,6 @@ function ClienteForm() {
             formErrors.email = 'Email inválido.';
         }
 
-        if (!telefoneRegex.test(formData.telefonePrincipal)) {
-            formErrors.telefonePrincipal = 'Telefone principal inválido. Use o formato (XX) XXXXX-XXXX.';
-        }
 
         setErrors(formErrors);
         return Object.keys(formErrors).length === 0;
