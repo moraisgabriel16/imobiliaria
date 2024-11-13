@@ -1,12 +1,13 @@
 // src/services/api.js
 import axios from 'axios';
 
-// Atualize esta URL após o deploy do backend para a Vercel
 const api = axios.create({
-    baseURL: 'https://imobiliaria-backend-eight.vercel.app/api', // Certifique-se de usar o novo endereço do backend
+    baseURL: process.env.NODE_ENV === 'production'
+        ? 'https://imobiliaria-green.vercel.app/api'  // URL do backend em produção
+        : 'http://localhost:5000/api'                 // URL do backend local em desenvolvimento
 });
 
-// Função para listar todos os clientes
+// Funções de CRUD usando `api` com a base URL definida dinamicamente
 export const getClientes = async () => {
     try {
         const response = await api.get('/clientes');
@@ -17,7 +18,6 @@ export const getClientes = async () => {
     }
 };
 
-// Função para obter detalhes de um cliente pelo CPF
 export const getClienteByCpf = async (cpf) => {
     try {
         const response = await api.get(`/clientes/${cpf}`);
@@ -28,7 +28,6 @@ export const getClienteByCpf = async (cpf) => {
     }
 };
 
-// Função para cadastrar um novo cliente
 export const createCliente = async (clienteData) => {
     try {
         const response = await api.post('/clientes', clienteData);
@@ -39,7 +38,6 @@ export const createCliente = async (clienteData) => {
     }
 };
 
-// Função para atualizar os dados de um cliente pelo CPF
 export const updateCliente = async (cpf, clienteData) => {
     try {
         const response = await api.put(`/clientes/${cpf}`, clienteData);
@@ -50,7 +48,6 @@ export const updateCliente = async (cpf, clienteData) => {
     }
 };
 
-// Função para deletar um cliente pelo CPF
 export const deleteCliente = async (cpf) => {
     try {
         const response = await api.delete(`/clientes/${cpf}`);
