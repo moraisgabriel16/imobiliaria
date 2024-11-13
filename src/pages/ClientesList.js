@@ -1,10 +1,11 @@
 // src/pages/ClientesList.js
 import React, { useEffect, useState } from 'react';
 import { getClientes } from '../services/api';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 function ClientesList() {
     const [clientes, setClientes] = useState([]);
+    const navigate = useNavigate();
 
     useEffect(() => {
         const loadClientes = async () => {
@@ -16,7 +17,8 @@ function ClientesList() {
 
     return (
         <div className="container mt-5">
-            <h2 className="mb-4">Listagem de Clientes</h2>
+            <h2 className="mb-4 text-center">Listagem de Clientes</h2>
+            <button className="btn btn-secondary mb-3" onClick={() => navigate('/')}>Voltar para a Home</button>
             {clientes.length > 0 ? (
                 <table className="table table-striped table-bordered">
                     <thead>

@@ -8,12 +8,8 @@ function Home() {
     const [error, setError] = useState('');
     const navigate = useNavigate();
 
-    // Função para formatar o CPF
     const formatCpf = (value) => {
-        // Remove todos os caracteres que não são números
         value = value.replace(/\D/g, '');
-
-        // Aplica a máscara de CPF (XXX.XXX.XXX-XX)
         if (value.length <= 3) {
             return value;
         } else if (value.length <= 6) {
@@ -25,20 +21,18 @@ function Home() {
         }
     };
 
-    // Atualiza o CPF com a formatação aplicada
     const handleCpfChange = (e) => {
         setCpf(formatCpf(e.target.value));
     };
 
-    // Busca cliente por CPF (com formatação completa)
     const handleSearch = async () => {
         if (cpf.trim() === '') {
             setError('Por favor, insira um CPF.');
             return;
         }
 
-        setError(''); // Limpa erros anteriores
-        const cliente = await getClienteByCpf(cpf); // Usa o CPF com pontos e traço
+        setError('');
+        const cliente = await getClienteByCpf(cpf);
 
         if (cliente) {
             navigate(`/clientes/${cpf}`);
@@ -60,28 +54,13 @@ function Home() {
                         placeholder="Digite o CPF do cliente"
                         value={cpf}
                         onChange={handleCpfChange}
-                        maxLength="14" // Limita o comprimento para o formato XXX.XXX.XXX-XX
+                        maxLength="14"
                     />
                     <button className="btn btn-primary" onClick={handleSearch}>
                         Buscar
                     </button>
                 </div>
                 {error && <p className="text-danger text-center">{error}</p>}
-
-                <div className="text-center mt-4">
-                    <button
-                        className="btn btn-outline-primary mx-2"
-                        onClick={() => navigate('/clientes')}
-                    >
-                        Consultar Todos os Clientes
-                    </button>
-                    <button
-                        className="btn btn-outline-success mx-2"
-                        onClick={() => navigate('/cadastro-cliente')}
-                    >
-                        Cadastrar Novo Cliente
-                    </button>
-                </div>
             </div>
         </div>
     );
