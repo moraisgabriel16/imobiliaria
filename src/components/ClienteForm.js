@@ -169,7 +169,7 @@ function ClienteForm() {
                     </div>
                 </div>
                 <div className="row mb-3">
-                    <div className="col-md-6">
+                    <div className="col-md-4">
                         <label className="form-label">Email</label>
                         <input
                             type="email"
@@ -180,8 +180,73 @@ function ClienteForm() {
                         />
                         {errors.email && <div className="invalid-feedback">{errors.email}</div>}
                     </div>
+                    <div className="col-md-4">
+                        <label className="form-label">Tipo de Cliente</label>
+                        <select
+                            name="tipoCliente"
+                            value={formData.tipoCliente}
+                            onChange={handleChange}
+                            className="form-control"
+                        >
+                            <option value="Proprietário">Proprietário</option>
+                            <option value="Inquilino">Inquilino</option>
+                        </select>
+                    </div>
+                    <div className="col-md-4">
+                        <label className="form-label">Número de Registro da Enel</label>
+                        <input
+                            type="text"
+                            name="numeroRegistroEnel"
+                            value={formData.numeroRegistroEnel}
+                            onChange={handleChange}
+                            className="form-control"
+                        />
+                    </div>
                 </div>
-                {/* Resto do formulário permanece inalterado */}
+                <h5>Informações do Imóvel</h5>
+                <div className="row mb-3">
+                    <div className="col-md-6">
+                        <label className="form-label">Endereço do Imóvel</label>
+                        <input
+                            type="text"
+                            name="enderecoImovel"
+                            value={formData.enderecoImovel}
+                            onChange={handleChange}
+                            className="form-control"
+                        />
+                    </div>
+                    <div className="col-md-2">
+                        <label className="form-label">Torre</label>
+                        <input
+                            type="text"
+                            name="torre"
+                            value={formData.torre}
+                            onChange={handleChange}
+                            className="form-control"
+                        />
+                    </div>
+                    <div className="col-md-2">
+                        <label className="form-label">Apartamento / Unidade</label>
+                        <input
+                            type="text"
+                            name="apartamento"
+                            value={formData.apartamento}
+                            onChange={handleChange}
+                            className="form-control"
+                        />
+                    </div>
+                    <div className="col-md-2">
+                        <label className="form-label">Área (m²)</label>
+                        <input
+                            type="text"
+                            name="areaImovel"
+                            value={formData.areaImovel}
+                            onChange={handleChange}
+                            className="form-control"
+                        />
+                    </div>
+                </div>
+                {/* Continue a adicionar todos os campos restantes aqui para completar o formulário */}
                 <button type="submit" className="btn btn-primary mt-3">Cadastrar</button>
             </form>
         </div>
