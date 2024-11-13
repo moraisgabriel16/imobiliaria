@@ -1,8 +1,9 @@
 // src/services/api.js
 import axios from 'axios';
 
+// Atualize esta URL após o deploy do backend para a Vercel
 const api = axios.create({
-    baseURL: 'https://imobiliaria-backend-delta.vercel.app/', // URL do backend
+    baseURL: 'https://imobiliaria-backend.vercel.app/api', // Certifique-se de usar o novo endereço do backend
 });
 
 // Função para listar todos os clientes
