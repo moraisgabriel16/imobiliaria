@@ -3,7 +3,7 @@ import axios from 'axios';
 
 const api = axios.create({
     baseURL: process.env.NODE_ENV === 'production'
-        ? 'https://imobiliaria-green.vercel.app/api'  // URL do backend em produção
+        ? 'https://imobiliaria-backend-eight.vercel.app/api'  // URL do backend em produção
         : 'http://localhost:5000/api'                 // URL do backend local em desenvolvimento
 });
 
