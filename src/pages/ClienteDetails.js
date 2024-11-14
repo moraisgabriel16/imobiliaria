@@ -15,7 +15,7 @@ function ClienteDetails() {
             try {
                 const response = await getClienteByCpf(cpf);
                 if (response && response.data) {
-                    setCliente(response.data);       // Ajuste para acessar 'data' corretamente
+                    setCliente(response.data);
                     setFormData(response.data);
                 } else {
                     console.error("Cliente não encontrado.");
@@ -110,7 +110,95 @@ function ClienteDetails() {
                                     <label className="form-label">Nome Completo</label>
                                     <input type="text" name="nome" value={formData.nome || ''} onChange={handleChange} className="form-control" />
                                 </div>
-                                {/* Restante dos campos editáveis */}
+                                <div className="mb-3">
+                                    <label className="form-label">Data de Nascimento</label>
+                                    <input type="date" name="dataNascimento" value={formData.dataNascimento || ''} onChange={handleChange} className="form-control" />
+                                </div>
+                                <div className="mb-3">
+                                    <label className="form-label">Telefone Principal</label>
+                                    <input type="text" name="telefonePrincipal" value={formData.telefonePrincipal || ''} onChange={handleChange} className="form-control" />
+                                </div>
+                                <div className="mb-3">
+                                    <label className="form-label">Telefone Secundário</label>
+                                    <input type="text" name="telefoneSecundario" value={formData.telefoneSecundario || ''} onChange={handleChange} className="form-control" />
+                                </div>
+                                <div className="mb-3">
+                                    <label className="form-label">Email</label>
+                                    <input type="email" name="email" value={formData.email || ''} onChange={handleChange} className="form-control" />
+                                </div>
+                                
+                                <h5>Informações do Imóvel</h5>
+                                <div className="mb-3">
+                                    <label className="form-label">Endereço</label>
+                                    <input type="text" name="enderecoImovel" value={formData.enderecoImovel || ''} onChange={handleChange} className="form-control" />
+                                </div>
+                                <div className="mb-3">
+                                    <label className="form-label">Torre</label>
+                                    <input type="text" name="torre" value={formData.torre || ''} onChange={handleChange} className="form-control" />
+                                </div>
+                                <div className="mb-3">
+                                    <label className="form-label">Apartamento / Unidade</label>
+                                    <input type="text" name="apartamento" value={formData.apartamento || ''} onChange={handleChange} className="form-control" />
+                                </div>
+                                <div className="mb-3">
+                                    <label className="form-label">Tipo de Imóvel</label>
+                                    <input type="text" name="tipoImovel" value={formData.tipoImovel || ''} onChange={handleChange} className="form-control" />
+                                </div>
+                                <div className="mb-3">
+                                    <label className="form-label">Área (m²)</label>
+                                    <input type="number" name="areaImovel" value={formData.areaImovel || ''} onChange={handleChange} className="form-control" />
+                                </div>
+                                <div className="mb-3">
+                                    <label className="form-label">Quartos</label>
+                                    <input type="number" name="quartos" value={formData.quartos || ''} onChange={handleChange} className="form-control" />
+                                </div>
+                                <div className="mb-3">
+                                    <label className="form-label">Banheiros</label>
+                                    <input type="number" name="banheiros" value={formData.banheiros || ''} onChange={handleChange} className="form-control" />
+                                </div>
+                                <div className="mb-3">
+                                    <label className="form-label">Vagas de Garagem</label>
+                                    <input type="number" name="vagasGaragem" value={formData.vagasGaragem || ''} onChange={handleChange} className="form-control" />
+                                </div>
+
+                                <h5>Informações do Contrato</h5>
+                                <div className="mb-3">
+                                    <label className="form-label">Data de Início do Contrato</label>
+                                    <input type="date" name="dataInicioContrato" value={formData.dataInicioContrato || ''} onChange={handleChange} className="form-control" />
+                                </div>
+                                <div className="mb-3">
+                                    <label className="form-label">Data de Término do Contrato</label>
+                                    <input type="date" name="dataTerminoContrato" value={formData.dataTerminoContrato || ''} onChange={handleChange} className="form-control" />
+                                </div>
+                                <div className="mb-3">
+                                    <label className="form-label">Valor do Aluguel</label>
+                                    <input type="number" name="valorAluguel" value={formData.valorAluguel || ''} onChange={handleChange} className="form-control" />
+                                </div>
+                                <div className="mb-3">
+                                    <label className="form-label">Data de Vencimento do Boleto</label>
+                                    <input type="number" name="vencimentoBoleto" value={formData.vencimentoBoleto || ''} onChange={handleChange} className="form-control" />
+                                </div>
+                                <div className="mb-3">
+                                    <label className="form-label">Forma de Pagamento</label>
+                                    <input type="text" name="formaPagamento" value={formData.formaPagamento || ''} onChange={handleChange} className="form-control" />
+                                </div>
+                                <div className="mb-3">
+                                    <label className="form-label">Taxa de Condomínio</label>
+                                    <input type="number" name="taxaCondominio" value={formData.taxaCondominio || ''} onChange={handleChange} className="form-control" />
+                                </div>
+                                <div className="mb-3">
+                                    <label className="form-label">Taxa de IPTU</label>
+                                    <input type="number" name="taxaIptu" value={formData.taxaIptu || ''} onChange={handleChange} className="form-control" />
+                                </div>
+                                <div className="mb-3">
+                                    <label className="form-label">Multa por Atraso</label>
+                                    <input type="number" name="multaAtraso" value={formData.multaAtraso || ''} onChange={handleChange} className="form-control" />
+                                </div>
+                                <div className="mb-3">
+                                    <label className="form-label">Índice de Reajuste</label>
+                                    <input type="text" name="indiceReajuste" value={formData.indiceReajuste || ''} onChange={handleChange} className="form-control" />
+                                </div>
+
                                 <div className="text-center mt-4">
                                     <button onClick={handleUpdate} className="btn btn-success mx-2">Salvar</button>
                                     <button onClick={() => setIsEditing(false)} className="btn btn-secondary mx-2">Cancelar</button>
