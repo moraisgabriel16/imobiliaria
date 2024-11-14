@@ -3,15 +3,14 @@ import axios from 'axios';
 
 const api = axios.create({
     baseURL: process.env.NODE_ENV === 'production'
-        ? 'https://imobiliaria-backend-eight.vercel.app/api'  // URL do backend em produção
-        : 'http://localhost:5000/api'                 // URL do backend local em desenvolvimento
+        ? 'https://imobiliaria-backend-eight.vercel.app/api'
+        : 'http://localhost:5000/api'
 });
 
-// Funções de CRUD usando `api` com a base URL definida dinamicamente
 export const getClientes = async () => {
     try {
         const response = await api.get('/clientes');
-        return response.data || [];
+        return response.data.data || [];
     } catch (error) {
         console.error("Erro ao buscar clientes:", error);
         return [];
