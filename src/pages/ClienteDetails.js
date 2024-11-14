@@ -2,6 +2,7 @@
 import React, { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { getClienteByCpf, updateCliente, deleteCliente } from '../services/api';
+import { jsPDF } from 'jspdf';
 
 function ClienteDetails() {
     const { cpf } = useParams();
@@ -58,6 +59,45 @@ function ClienteDetails() {
         }
     };
 
+    const generatePDF = () => {
+        const doc = new jsPDF();
+
+        doc.setFontSize(18);
+        doc.text('Detalhes do Cliente', 14, 22);
+        
+        doc.setFontSize(12);
+        doc.text(`Nome: ${cliente.nome}`, 14, 30);
+        doc.text(`CPF: ${cliente.cpf}`, 14, 38);
+        doc.text(`Data de Nascimento: ${new Date(cliente.dataNascimento).toLocaleDateString()}`, 14, 46);
+        doc.text(`Telefone Principal: ${cliente.telefonePrincipal}`, 14, 54);
+        doc.text(`Telefone Secundário: ${cliente.telefoneSecundario}`, 14, 62);
+        doc.text(`Email: ${cliente.email}`, 14, 70);
+
+        doc.text('Informações do Imóvel', 14, 78);
+        doc.text(`Endereço: ${cliente.enderecoImovel}`, 14, 86);
+        doc.text(`Torre: ${cliente.torre}`, 14, 94);
+        doc.text(`Apartamento: ${cliente.apartamento}`, 14, 102);
+        doc.text(`Tipo de Imóvel: ${cliente.tipoImovel}`, 14, 110);
+        doc.text(`Área: ${cliente.areaImovel} m²`, 14, 118);
+        doc.text(`Quartos: ${cliente.quartos}`, 14, 126);
+        doc.text(`Banheiros: ${cliente.banheiros}`, 14, 134);
+        doc.text(`Vagas de Garagem: ${cliente.vagasGaragem}`, 14, 142);
+
+        doc.text('Informações do Contrato', 14, 150);
+        doc.text(`Data de Início do Contrato: ${new Date(cliente.dataInicioContrato).toLocaleDateString()}`, 14, 158);
+        doc.text(`Data de Término do Contrato: ${new Date(cliente.dataTerminoContrato).toLocaleDateString()}`, 14, 166);
+        doc.text(`Valor do Aluguel: R$ ${cliente.valorAluguel}`, 14, 174);
+        doc.text(`Data de Vencimento do Boleto: ${cliente.vencimentoBoleto}`, 14, 182);
+        doc.text(`Forma de Pagamento: ${cliente.formaPagamento}`, 14, 190);
+        doc.text(`Taxa de Condomínio: R$ ${cliente.taxaCondominio}`, 14, 198);
+        doc.text(`Taxa de IPTU: R$ ${cliente.taxaIptu}`, 14, 206);
+        doc.text(`Multa por Atraso: R$ ${cliente.multaAtraso}`, 14, 214);
+        doc.text(`Índice de Reajuste: ${cliente.indiceReajuste}`, 14, 222);
+
+        // Salva o PDF
+        doc.save('detalhes_cliente.pdf');
+    };
+
     return (
         <div className="container mt-5">
             <h2 className="mb-4 text-center">Detalhes do Cliente</h2>
@@ -73,7 +113,7 @@ function ClienteDetails() {
                                 <div className="mb-3"><strong>Telefone Principal:</strong> {cliente.telefonePrincipal}</div>
                                 <div className="mb-3"><strong>Telefone Secundário:</strong> {cliente.telefoneSecundario}</div>
                                 <div className="mb-3"><strong>Email:</strong> {cliente.email}</div>
-                                
+
                                 <hr />
                                 <h5 className="text-center mt-3">Informações do Imóvel</h5>
                                 <div className="mb-3"><strong>Endereço:</strong> {cliente.enderecoImovel}</div>
@@ -100,11 +140,12 @@ function ClienteDetails() {
                                 <div className="text-center mt-4">
                                     <button onClick={() => setIsEditing(true)} className="btn btn-warning mx-2">Editar</button>
                                     <button onClick={handleDelete} className="btn btn-danger mx-2">Excluir</button>
+                                    <button onClick={generatePDF} className="btn btn-info mx-2">Exportar PDF</button>
                                 </div>
                             </>
                         ) : (
                             <>
-                                {/* Campos editáveis */}
+                                {/* Campos editáveis para todas as informações */}
                                 <h5>Informações Pessoais</h5>
                                 <div className="mb-3">
                                     <label className="form-label">Nome Completo</label>
@@ -126,7 +167,7 @@ function ClienteDetails() {
                                     <label className="form-label">Email</label>
                                     <input type="email" name="email" value={formData.email || ''} onChange={handleChange} className="form-control" />
                                 </div>
-                                
+
                                 <h5>Informações do Imóvel</h5>
                                 <div className="mb-3">
                                     <label className="form-label">Endereço</label>
@@ -176,7 +217,7 @@ function ClienteDetails() {
                                 </div>
                                 <div className="mb-3">
                                     <label className="form-label">Data de Vencimento do Boleto</label>
-                                    <input type="number" name="vencimentoBoleto" value={formData.vencimentoBoleto || ''} onChange={handleChange} className="form-control" />
+                                    <input type="text" name="vencimentoBoleto" value={formData.vencimentoBoleto || ''} onChange={handleChange} className="form-control" />
                                 </div>
                                 <div className="mb-3">
                                     <label className="form-label">Forma de Pagamento</label>
