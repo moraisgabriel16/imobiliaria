@@ -10,13 +10,13 @@ function Login() {
     const navigate = useNavigate();
 
     // Defina os emails permitidos
-    const allowedEmails = ['adm@seistema.com', 'ale@sistema.com'];
+    const allowedEmails = ['adm@seistema.com', 'ale@sistema.com', 'adrianerodrigues.imoveis@gmail.com'];
 
     const handleLogin = (e) => {
         e.preventDefault();
 
         // Verificar se o email é permitido
-        if (allowedEmails.includes(email) && password === '123456') { // A senha aqui é fictícia para demonstrar
+        if (allowedEmails.includes(email) && password === 'IMOB2025') { // A senha aqui é fictícia para demonstrar
             navigate('/home');
         } else {
             setError('Email ou senha inválidos.');
